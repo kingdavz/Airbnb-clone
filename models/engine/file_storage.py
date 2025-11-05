@@ -30,6 +30,7 @@ class Filestorage:
 
     __file_path = "airbnb.json"
     __objects = {}
+
     def all(self):
         """Returns the dictionary __objects"""
         return self.__objects
@@ -37,7 +38,7 @@ class Filestorage:
     def new(self, obj):
         """sets in __objects the obj with key <class name>
         """
-        key = obj.__class__.__name__
+        key = obj.__class__.__name__ + "."
         key += str(obj.id)
         self.__objects[key] = obj
 
@@ -56,7 +57,7 @@ class Filestorage:
         """serialize objects to the JSON file"""
         j_dict = {}
         for key in self.__objects:
-            j_dict[key] =self.__objects[key].to_dict()
-            with open(self.__file_path, "w") as f:
-                json.dump(j_dict,f)
+            j_dict[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w") as f:
+            json.dump(j_dict, f)
                     

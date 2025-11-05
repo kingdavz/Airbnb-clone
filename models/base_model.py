@@ -20,6 +20,7 @@ class BaseModel:
             *args: Unused.
             **kwargs: Key/value pairs of attributes.
         """
+        
         if len(kwargs) > 0:
             for attr, value in kwargs.items():
                 if attr == "created_at" or attr == "updated_at":
@@ -49,6 +50,6 @@ class BaseModel:
         """A MODULE THAT CONVERT TO DICTIONARY"""
         my_dict = self.__dict__.copy()
         my_dict["__class__"] = self.__class__.__name__
-        my_dict["updated_at"] = self.updated_at.isoformat
-        my_dict["created_at"] = self.created_at.isoformat
+        my_dict["updated_at"] = self.updated_at.isoformat()
+        my_dict["created_at"] = self.created_at.isoformat()
         return my_dict
